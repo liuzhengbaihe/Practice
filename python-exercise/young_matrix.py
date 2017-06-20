@@ -22,19 +22,9 @@ def set_zero_for_target(target_loc):
             matrix[i][y] = 0
     return matrix
 
-def quick_sort(seq):
-    if seq == []:
-        return []
-    else:
-        front_part = quick_sort([x for x in seq[1:] if x < seq[0]])
-        end_part = quick_sort([x for x in seq[1:] if x > seq[0]])
-    return front_part + [seq[0]] + end_part
-
 if __name__ == '__main__':
-    #matrix = [[1,2,8,9], [2,6,9,12], [4,7,10,13], [6,8,11,15]]
-    #target_loc = get_target_from_matrix(matrix, 6)
-    #print set_zero_for_target(target_loc)
-    seq=[5,6,78,9,0,-1,2,3,-65,12]
-    print quick_sort(seq)
+    matrix = [[1,2,8,9], [2,6,9,12], [4,7,10,13], [6,8,11,15]]
+    target_loc = get_target_from_matrix(matrix, 6)
+    print set_zero_for_target(target_loc)
 else:
     print "I am being imported as a module"
