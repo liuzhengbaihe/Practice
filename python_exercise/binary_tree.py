@@ -23,6 +23,7 @@ def layer(root, layer_list):
     return layer_list
 
 def visible_nodes(root, visible_node_list, max_value=None):
+    """visible node is defined as the node value is greator than every node in the path from root the the node"""
     if root == None:
         return 
     if max_value == None:
@@ -35,6 +36,20 @@ def visible_nodes(root, visible_node_list, max_value=None):
         visible_nodes(root.left, visible_node_list, max_value)
         visible_nodes(root.right, visible_node_list, max_value)
 
+def max_deep(root):
+    if root == None:
+        return 0
+    return max(max_deep(root.left), max_deep(root.right)) + 1
+
+def is_same_tree(node1, node2):
+    if node1 == None and node2 == None:
+        return True
+    elif node1 and node2:
+        return node1.data == node2.data and is_same_tree(node1.left, node2.left) and is_same_tree(node1.right, node2.right)
+    else:
+        return False
+
+
 if __name__ == "__main__":
     tree = Node(1, Node(3, Node(7, Node(0)), Node(6)), Node(2, Node(5), Node(4)))
     deep_list = []
@@ -46,3 +61,6 @@ if __name__ == "__main__":
     visible_node_list = []
     visible_nodes(tree, visible_node_list)
     print "visible node list:", visible_node_list
+    print "depth of tree:", max_deep(tree)
+    tree2 = Node(1)
+    print "is_same_tree:", is_same_tree(tree, tree2)

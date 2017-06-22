@@ -12,13 +12,6 @@ def print_list(node):
         print node
         node = node.next
 
-def add_next(tail=None, el=None):
-    if el < 10:
-        node = Node(el)
-        tail.next = node
-        tail = node
-        add_next(tail, el+1)
-
 def check_cross_point(node1, node2):
     length1, length2 = 0, 0
     node = node1
@@ -44,20 +37,31 @@ def check_cross_point(node1, node2):
             node1 = node1.next
             node2 = node2.next
 
+
+def reverse(link):
+    pre = link
+    cur = pre.next
+    pre.next = None
+
+    while cur:
+        tmp = cur.next
+        cur.next = pre
+        pre = cur
+        cur = tmp
+    return pre 
+
 if __name__ == "__main__":
-    #node1 = Node(1)
-    #add_next(node1, 2)
-    #node2 = Node(5)
-    #add_next(node2, 6)
-    #print_list(node1)
-    #print_list(node2)
-    #check_cross_point(node1, node2)
-    
-    node4 = Node(4)
-    node3 = Node(3)
-    node2 = Node(2)
-    node1 = Node(1)
-    node1.next = node4
-    node2.next = node3
-    node3.next = node4
+    node1 = Node(1, Node(2))
+    node2 = Node(3)
     check_cross_point(node1, node2)
+
+    node = Node(4) 
+    node1 = Node(1, node)
+    node2 = Node(2, Node(3, node))
+    check_cross_point(node1, node2)
+
+    link = Node(1, Node(2, Node(3, Node(4, Node(5, Node(6, Node(7, Node(8, Node(9)))))))))
+    link1 = reverse(link)
+    while link1:
+        print link1.value
+        link1 = link1.next
