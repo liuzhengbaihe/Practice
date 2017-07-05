@@ -1,21 +1,31 @@
 # classic class and new-style class, also inheritance 
+# new-style class use C3 to brower parent classes
 class A(object):
     def bar(self):
         print "A.bar"
 
 class B(A):
-    def bar1(self):
+    def bar(self):
         print "B.bar"
 
-class C(A):
+class C(B):
     def bar(self):
         print "C.bar"
 
-class D(B, C):
+class D(A):
+    def bar(self):
+        print "D.bar"
+
+class E(D):
+    def bar(self):
+        print "E.bar"
+
+class F(C,E):
     pass
 
-d = D()
-print d.bar()
+f = F()
+print F.__mro__
+print f.__class__
 
 class Foo(object):
     def m1(self):
