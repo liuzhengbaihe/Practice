@@ -1,4 +1,4 @@
-# caculate the square root value given a int number and double value precision limitation
+# caculate the square root value given a int value and double value as precision limitation
 def sqrt(n, rx=1, e=1e-10):
     n *= 1.0
     while True:
